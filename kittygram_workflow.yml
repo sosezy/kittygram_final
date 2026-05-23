@@ -74,23 +74,15 @@ jobs:
       - name: Push frontend image to Docker Hub
         uses: docker/build-push-action@v5
         with:
-          context: ./frontend/
-          file: ./frontend/Dockerfile
+          context: frontend
+          file: frontend/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_frontend:latest
 
       - name: Push backend image to Docker Hub
         uses: docker/build-push-action@v5
         with:
-          context: ./backend/
-          file: ./backend/Dockerfile
+          context: backend
+          file: backend/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_backend:latest
-
-      - name: Push gateway image to Docker Hub
-        uses: docker/build-push-action@v5
-        with:
-          context: ./gateway/
-          file: ./gateway/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_gateway:latest
