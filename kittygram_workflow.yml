@@ -86,3 +86,17 @@ jobs:
           file: backend/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_backend:latest
+
+      - name: Send success message via Telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            🚀 GitHub Workflow успешно завершён!
+            
+            Репозиторий: ${{ github.repository }}
+            Автор коммита: ${{ github.actor }}
+            Сообщение: ${{ github.event.head_commit.message }}
+            
+            Все тесты пройдены, Docker-образы успешно обновлены на Docker Hub! 🎉
